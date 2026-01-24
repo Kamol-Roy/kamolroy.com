@@ -1,0 +1,167 @@
+---
+title: "Introducing GeoManim: Animated Maps with Python"
+description: "An open-source Python library for creating beautiful animated geospatial visualizations using the Manim engine. One-line API for animated maps, choropleths, and route animations."
+date: "2024-01-20"
+tags: ["GeoManim", "Python", "Manim", "Geospatial", "Open Source", "Visualization"]
+---
+
+I'm excited to share **GeoManim**, an open-source Python library I've been building for creating animated geospatial visualizations using the [Manim](https://www.manim.community/) animation engine.
+
+## Why GeoManim?
+
+Creating animated maps typically requires either:
+
+- **Video editing software**: Manual, time-consuming, not reproducible
+- **JavaScript libraries**: D3.js, Leaflet - great for web, but complex for video export
+- **GIS tools**: ArcGIS/QGIS animations - steep learning curve, limited styling
+
+I wanted something that:
+1. Works with a single line of Python
+2. Produces beautiful, publication-quality animations
+3. Handles common geospatial formats (GeoJSON, Shapefiles, CSV)
+4. Integrates with the mathematical animation ecosystem (Manim)
+
+## Quick Start
+
+Install from GitHub (PyPI coming soon):
+
+```bash
+pip install git+https://github.com/Kamol-Roy/geomanim
+```
+
+Create an animated world map:
+
+```python
+from geomanim import animate
+
+animate("countries.geojson")
+```
+
+That's it. One line.
+
+## Features
+
+### Choropleth Maps
+
+Color regions by data values with automatic legends:
+
+```python
+animate("countries.geojson", column="population")
+```
+
+### Ordered Animations
+
+Control which regions appear first based on any data column:
+
+```python
+# Countries appear by GDP, richest first
+animate("world.geojson", column="gdp", order="gdp", reverse_order=True)
+```
+
+### Route Animations
+
+Animate paths, migrations, or any line geometries:
+
+```python
+animate(
+    "routes.geojson",
+    column="route_name",
+    order="order",
+    basemap="OpenStreetMap.Mapnik",
+    stroke_width=5,
+)
+```
+
+### Dynamic Basemaps
+
+Automatically fetch OpenStreetMap tiles for your data bounds:
+
+```python
+animate("data.geojson", basemap="light")
+```
+
+### Categorical Coloring
+
+Auto-detect and color categorical data with legends:
+
+```python
+animate("regions.geojson", column="category")
+```
+
+## Example: Cross-Country Routes
+
+Here's an animated visualization of driving routes from Seattle to Miami to NYC:
+
+```python
+from geomanim import animate
+
+animate(
+    file_path="routes.geojson",
+    column="route_name",
+    order="order",
+    basemap="OpenStreetMap.Mapnik",
+    stroke_width=5,
+    quality="high",
+)
+```
+
+The library fetches route geometry from OSRM, overlays it on OpenStreetMap tiles, and renders a smooth animation.
+
+## Advanced Usage
+
+For more control, use the `GeoMap` class directly in Manim scenes:
+
+```python
+from manim import *
+from geomanim import GeoMap, load_geojson
+
+class CustomMapScene(Scene):
+    def construct(self):
+        data = load_geojson("countries.geojson")
+
+        geo_map = GeoMap(
+            data,
+            fill_color=BLUE,
+            stroke_color=WHITE,
+            stroke_width=1,
+        )
+
+        self.play(Create(geo_map), run_time=3)
+        self.wait()
+```
+
+This gives you full access to Manim's animation primitives - morphing, camera movements, custom easing, and more.
+
+## Technical Details
+
+GeoManim is built on:
+
+- **Manim**: The mathematical animation engine (same one used by 3Blue1Brown)
+- **GeoPandas**: For reading and processing geospatial data
+- **Shapely**: For geometry operations
+- **pyproj**: For coordinate transformations
+
+The library handles coordinate system conversions, bounding box calculations, and scaling automatically.
+
+## What's Next
+
+I'm actively working on:
+
+- **PyPI release**: `pip install geomanim` coming soon
+- **More projections**: Beyond Mercator - Robinson, Albers, etc.
+- **3D terrain**: Elevation-aware visualizations
+- **Time series**: Animate data changes over time
+- **Better legends**: More customization options
+
+## Try It Out
+
+The code is open source on GitHub:
+
+- **Repository**: [github.com/Kamol-Roy/geomanim](https://github.com/Kamol-Roy/geomanim)
+- **Install**: `pip install git+https://github.com/Kamol-Roy/geomanim`
+
+Contributions, issues, and feature requests welcome!
+
+---
+
+GeoManim is part of my broader work on geospatial tools. Check out [GeoTasker.ai](https://geotasker.ai) for AI-powered geospatial video generation - where you describe a topic and get a complete narrated video with maps and visualizations.

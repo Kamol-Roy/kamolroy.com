@@ -1,0 +1,82 @@
+---
+title: "Introducing GeoTasker.ai: AI-Powered Geospatial Storytelling"
+description: "An overview of GeoTasker.ai, an AI platform that transforms any topic into narrated video stories with maps, animations, and data visualizations."
+date: "2024-01-15"
+tags: ["GeoTasker", "AI", "Geospatial", "Video Generation", "Product"]
+---
+
+Creating compelling visual stories about places, events, and data has always required specialized skills: GIS expertise, video editing, motion graphics, and narration. That's why I'm building **GeoTasker.ai**.
+
+## The Problem
+
+Whether you're a journalist covering geopolitical events, an educator explaining historical migrations, or a business analyst presenting regional data, creating map-based video content traditionally requires:
+
+- Learning complex GIS and mapping tools
+- Video editing software expertise
+- Motion graphics for animations
+- Recording or licensing voiceovers
+- Hours of manual production work
+
+This creates a significant barrier for anyone who needs to communicate spatial stories visually.
+
+## The Solution
+
+GeoTasker.ai takes a fundamentally different approach. You describe what you want in plain language:
+
+> "Create a video explaining the geography and strategic importance of Greenland, showing its location relative to the US and Europe, with key statistics about its resources."
+
+The AI understands your intent, researches the topic, generates a complete story, and produces a narrated video with:
+
+- **Animated maps** with routes, markers, and polygons
+- **Data visualizations** (charts, choropleths, comparisons)
+- **AI-generated narration** in 32+ languages
+- **Background music** matching the tone
+- **Professional captions** and transitions
+
+## How It Works
+
+Under the hood, GeoTasker uses a multi-agent AI architecture:
+
+1. **Orchestrator** - Understands your request and coordinates the workflow
+2. **Geospatial Analyst** - Researches locations, gathers data, creates map layers
+3. **Story Creator** - Writes the narrative, structures segments, designs visualizations
+4. **Validator** - Ensures accuracy and coherence before rendering
+
+The system then renders everything using GPU-accelerated Mapbox animations, ElevenLabs narration, and FFmpeg for final video composition.
+
+## Example Use Cases
+
+- **Geopolitical explainers**: Visualize territorial disputes, trade routes, military positioning
+- **Economic analysis**: Show regional GDP, inflation patterns, market comparisons
+- **Historical narratives**: Animate migrations, battles, empire expansions
+- **Educational content**: Teach geography, climate patterns, demographics
+- **Business presentations**: Regional performance, expansion plans, market analysis
+
+## Technical Architecture
+
+```
+User Prompt → Claude AI (Multi-Agent) → Story JSON
+                                            ↓
+                                     GPU Rendering
+                                            ↓
+                              Maps + Charts + Narration + Music
+                                            ↓
+                                     Final Video
+```
+
+Key technologies:
+- **AI**: Claude (Opus/Sonnet) for understanding and content generation
+- **Rendering**: Mapbox GL, Playwright for map capture, FFmpeg for composition
+- **Narration**: ElevenLabs Turbo v2.5 (32 languages including Bengali)
+- **Infrastructure**: FastAPI backend, Next.js frontend, Redis for state, GPU workers
+
+## What's Next
+
+I'm actively developing GeoTasker.ai with a focus on:
+
+- **Segment-level editing**: Preview and modify individual story segments
+- **More visualization types**: Racing bar charts, flow maps, 3D terrain
+- **Custom data uploads**: Bring your own GeoJSON, CSV, or shapefiles
+- **Team collaboration**: Share and co-edit projects
+
+Check out [GeoTasker.ai](https://geotasker.ai) and try it free - 50 credits to start, no credit card required.

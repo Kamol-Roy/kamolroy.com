@@ -1,0 +1,107 @@
+---
+title: "Building a Modern Personal Site with Next.js"
+description: "How I built this website using Next.js App Router, Tailwind CSS, and MDX for a fast, SEO-optimized personal site and blog."
+date: "2024-01-10"
+tags: ["Next.js", "React", "Web Development", "MDX"]
+---
+
+I recently rebuilt my personal website using Next.js 14 with the App Router. Here's a breakdown of the architecture and some lessons learned.
+
+## Why Next.js?
+
+After working with various frameworks, I chose Next.js for several reasons:
+
+1. **Static Site Generation (SSG)**: Blog posts are pre-rendered at build time for instant page loads
+2. **App Router**: The new file-based routing is intuitive and supports React Server Components
+3. **SEO out of the box**: Built-in metadata API, automatic sitemap generation, and structured data support
+4. **Vercel deployment**: Zero-config deployment with edge caching
+
+## The Stack
+
+- **Framework**: Next.js 14 with App Router
+- **Styling**: Tailwind CSS for utility-first styling
+- **Content**: MDX with gray-matter for frontmatter parsing
+- **Fonts**: next/font with Inter (body) and JetBrains Mono (code)
+- **Hosting**: Vercel
+
+## Project Structure
+
+```
+/app
+  layout.tsx          # Root layout with fonts, metadata
+  page.tsx            # Home page
+  /blog
+    page.tsx          # Blog index
+    /[slug]/page.tsx  # Dynamic blog post pages
+/components
+  Header.tsx
+  Footer.tsx
+  PostCard.tsx
+/lib
+  posts.ts            # MDX parsing utilities
+  seo.ts              # Metadata helpers
+/content/posts
+  *.mdx               # Blog posts
+```
+
+## Key Implementation Details
+
+### MDX Processing
+
+I use `next-mdx-remote` for MDX processing with custom components:
+
+```typescript
+import { MDXRemote } from 'next-mdx-remote/rsc';
+import MDXComponents from '@/components/MDXComponents';
+
+export default async function BlogPost({ params }) {
+  const post = getPostBySlug(params.slug);
+  return <MDXRemote source={post.content} components={MDXComponents} />;
+}
+```
+
+### Static Generation
+
+Blog posts are statically generated at build time:
+
+```typescript
+export async function generateStaticParams() {
+  const slugs = getAllPostSlugs();
+  return slugs.map((slug) => ({ slug }));
+}
+```
+
+### SEO Metadata
+
+Each page generates its own metadata using a helper function:
+
+```typescript
+export const metadata = generateSEO({
+  title: 'Blog',
+  description: 'Articles about AI and machine learning',
+  path: '/blog',
+});
+```
+
+## Performance Optimizations
+
+- **Font optimization**: Using `next/font` to self-host Google Fonts
+- **Image optimization**: Next.js Image component with lazy loading
+- **Static pages**: All blog posts pre-rendered at build time
+- **Minimal JavaScript**: Most pages are server components
+
+## Lessons Learned
+
+1. **Keep it simple**: Resist the urge to over-engineer. A personal site doesn't need a CMS.
+2. **Prioritize content**: Good design serves the content, not the other way around.
+3. **Mobile first**: Most readers come from mobile devices.
+4. **Performance matters**: Fast load times improve both UX and SEO.
+
+## What's Next
+
+I plan to add:
+- Full-text search with a client-side index
+- Reading progress indicator
+- Related posts suggestions
+
+The source code structure is intentionally simple so it's easy to maintain and extend.
