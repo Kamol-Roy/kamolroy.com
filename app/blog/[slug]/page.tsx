@@ -111,9 +111,9 @@ export default async function BlogPostPage({ params }: Props) {
           {/* Comments */}
           <Comments
             repo="Kamol-Roy/kamolroy.com"
-            repoId="REPO_ID_HERE"
-            category="Blog Comments"
-            categoryId="CATEGORY_ID_HERE"
+            repoId="R_kgDORAR-yA"
+            category="General"
+            categoryId="DIC_kwDORAR-yM4C1XWK"
           />
         </article>
       </Container>
