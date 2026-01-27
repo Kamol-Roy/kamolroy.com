@@ -10,21 +10,44 @@ export default function Home() {
     <Container className="py-16">
       {/* Hero Section */}
       <section className="mb-16">
-        <h1 className="text-4xl sm:text-5xl font-bold text-gray-900 mb-6">
-          Principal AI Solutions Architect
+        <h1 className="text-4xl sm:text-5xl font-bold text-gray-900 mb-4">
+          AI Solutions Architect & Principal Consultant
         </h1>
-        <p className="text-xl text-gray-600 max-w-2xl leading-relaxed">
-          I build AI systems that turn complex data into compelling stories. Currently building{' '}
+        <p className="text-xl text-gray-600 max-w-2xl leading-relaxed mb-6">
+          Building AI and data solutions for infrastructure analytics, transportation, and large-scale geospatial systems.
+        </p>
+        <p className="text-gray-600 max-w-2xl leading-relaxed">
+          I work at{' '}
+          <a
+            href="https://cpcs.ca"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-blue-600 hover:text-blue-700 font-medium"
+          >
+            CPCS
+          </a>{' '}
+          as a Principal Consultant, helping infrastructure clients apply data science, machine learning, and visualization to real-world planning and operations problems.
+        </p>
+        <p className="text-gray-600 max-w-2xl leading-relaxed mt-4">
+          Outside of consulting, I build tools for geospatial storytelling and visualization, including{' '}
           <a
             href="https://geotasker.ai"
             target="_blank"
             rel="noopener noreferrer"
             className="text-blue-600 hover:text-blue-700 font-medium"
           >
-            GeoTasker.ai
-          </a>
-          , an AI-powered platform that transforms any topic into narrated video stories with maps,
-          animations, and data visualizations.
+            GeoTasker
+          </a>{' '}
+          (AI-generated map videos) and{' '}
+          <a
+            href="https://github.com/Kamol-Roy/geomanim"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-blue-600 hover:text-blue-700 font-medium"
+          >
+            GeoManim
+          </a>{' '}
+          (animated map visualizations).
         </p>
         <div className="mt-8 flex flex-wrap gap-4">
           <Link

@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 
 const siteUrl = 'https://kamolroy.com';
 const siteName = 'Kamol Roy';
-const defaultDescription = 'Principal AI Solutions Architect building GeoTasker.ai - an AI platform for creating narrated video stories with maps and data visualizations. Writing about AI, geospatial tech, and building products.';
+const defaultDescription = 'AI Solutions Architect & Principal Consultant at CPCS. Building AI and data solutions for infrastructure analytics, transportation, and geospatial systems. Personal projects: GeoTasker and GeoManim.';
 
 interface SEOParams {
   title?: string;
@@ -100,7 +100,7 @@ export function generatePersonSchema() {
     '@type': 'Person',
     name: 'Kamol Roy',
     url: siteUrl,
-    jobTitle: 'Principal AI Solutions Architect',
+    jobTitle: 'AI Solutions Architect & Principal Consultant',
     description: defaultDescription,
     sameAs: [
       'https://www.linkedin.com/in/kcroy/',

@@ -157,8 +157,8 @@ export default function PortfolioPage() {
     <Container className="py-16">
       <h1 className="text-4xl font-bold text-gray-900 mb-4">Portfolio</h1>
       <p className="text-gray-600 mb-12 max-w-2xl">
-        A collection of my research projects and technical work in AI, machine learning,
-        geospatial analysis, and disaster analytics. Most projects from my academic career (2016-2020).
+        A collection of my professional and research work in AI, machine learning,
+        geospatial analysis, and infrastructure analytics.
       </p>
 
       {/* Featured: GeoTasker */}
@@ -225,6 +225,49 @@ export default function PortfolioPage() {
               </div>
             </div>
             <span className="text-green-600 text-2xl">&rarr;</span>
+          </div>
+        </a>
+      </section>
+
+      {/* Professional Work */}
+      <section className="mb-16">
+        <h2 className="text-2xl font-semibold text-gray-900 mb-6">Professional Work</h2>
+        <a
+          href="https://cpcs.ca"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="block p-8 bg-gradient-to-br from-slate-50 to-gray-100 border border-gray-200 rounded-2xl hover:shadow-lg transition-shadow"
+        >
+          <div className="flex items-start justify-between">
+            <div>
+              <div className="flex gap-2 mb-4">
+                <span className="inline-block px-3 py-1 text-xs font-medium text-slate-700 bg-slate-200 rounded-full">
+                  CPCS
+                </span>
+                <span className="inline-block px-3 py-1 text-xs font-medium text-slate-600 bg-slate-100 rounded-full">
+                  2021 - Present
+                </span>
+              </div>
+              <h3 className="text-2xl font-bold text-gray-900 mb-3">Infrastructure Analytics & AI</h3>
+              <p className="text-gray-600 max-w-xl mb-4">
+                Geospatial analytics and AI solutions for transportation and infrastructure projects across
+                North America, Saudi Arabia, Central Asia, and Africa. Freight network analysis, travel time
+                reliability, and infrastructure monitoring using large-scale GPS datasets (NPMRDS, INRIX, ATRI).
+              </p>
+              <p className="text-gray-600 max-w-xl mb-4">
+                Built custom Python and Plotly Dash tools for spatial visualization and routing.
+                Led AI-assisted mapping workflows for power and transport infrastructure.
+                Now serving as technical lead for AI and automation initiatives.
+              </p>
+              <div className="flex flex-wrap gap-2">
+                {['Python', 'Plotly Dash', 'Geospatial Analytics', 'GPS Data', 'AI/ML', 'Infrastructure'].map((tag) => (
+                  <span key={tag} className="px-2 py-1 text-xs font-medium text-slate-700 bg-slate-200 rounded">
+                    {tag}
+                  </span>
+                ))}
+              </div>
+            </div>
+            <span className="text-slate-500 text-2xl">&rarr;</span>
           </div>
         </a>
       </section>

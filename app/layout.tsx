@@ -19,10 +19,10 @@ const jetbrainsMono = JetBrains_Mono({
 
 export const metadata: Metadata = {
   title: {
-    default: 'Kamol Roy | Principal AI Solutions Architect',
+    default: 'Kamol Roy | AI Solutions Architect & Principal Consultant',
     template: '%s | Kamol Roy',
   },
-  description: 'Principal AI Solutions Architect building GeoTasker.ai - an AI platform for creating narrated video stories with maps and data visualizations. Writing about AI, geospatial tech, and building products.',
+  description: 'AI Solutions Architect & Principal Consultant at CPCS. Building AI and data solutions for infrastructure analytics, transportation, and geospatial systems. Personal projects: GeoTasker and GeoManim.',
   metadataBase: new URL('https://kamolroy.com'),
   openGraph: {
     type: 'website',

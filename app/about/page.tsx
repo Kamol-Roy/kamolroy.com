@@ -3,7 +3,7 @@ import { generateSEO } from '@/lib/seo';
 
 export const metadata = generateSEO({
   title: 'About',
-  description: 'Principal AI Solutions Architect with expertise in machine learning, data science, and transportation systems. PhD in Civil Engineering from UCF.',
+  description: 'AI Solutions Architect & Principal Consultant at CPCS. Building AI and data solutions for infrastructure analytics, transportation, and geospatial systems.',
   path: '/about',
 });
 
@@ -15,27 +15,33 @@ export default function AboutPage() {
       <div className="prose max-w-none">
         <section className="mb-12">
           <p className="text-xl text-gray-600 leading-relaxed mb-6">
-            I&apos;m Kamol Roy, a Principal AI Solutions Architect passionate about building intelligent systems
-            that understand and process location data. My work sits at the intersection of machine learning,
-            data science, and geospatial analysis.
+            I&apos;m Kamol Roy, an AI Solutions Architect & Principal Consultant at{' '}
+            <a
+              href="https://cpcs.ca"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-blue-600 hover:text-blue-700 font-medium"
+            >
+              CPCS
+            </a>
+            . I build AI and data solutions for infrastructure analytics, transportation, and large-scale geospatial systems.
           </p>
 
           <p className="text-gray-600 leading-relaxed mb-6">
-            Currently, I&apos;m building{' '}
+            At CPCS, I help infrastructure clients apply data science, machine learning, and visualization to real-world planning and operations problems.
+          </p>
+
+          <p className="text-gray-600 leading-relaxed mb-6">
+            Outside of consulting, I build tools for geospatial storytelling and visualization, including{' '}
             <a
               href="https://geotasker.ai"
               target="_blank"
               rel="noopener noreferrer"
               className="text-blue-600 hover:text-blue-700 font-medium"
             >
-              GeoTasker.ai
-            </a>
-            , an AI-powered geospatial storytelling platform that transforms any topic into
-            narrated video stories with maps, animations, and data visualizations.
-          </p>
-
-          <p className="text-gray-600 leading-relaxed mb-6">
-            I&apos;m also developing{' '}
+              GeoTasker
+            </a>{' '}
+            (AI-generated map videos) and{' '}
             <a
               href="https://github.com/Kamol-Roy/geomanim"
               target="_blank"
@@ -43,9 +49,8 @@ export default function AboutPage() {
               className="text-blue-600 hover:text-blue-700 font-medium"
             >
               GeoManim
-            </a>
-            , an open-source Python library for creating animated geospatial visualizations
-            using the Manim engine. One-line API for animated maps, choropleths, and route animations.
+            </a>{' '}
+            (animated map visualizations).
           </p>
         </section>
 
@@ -70,21 +75,24 @@ export default function AboutPage() {
             <div>
               <h3 className="font-medium text-gray-900 mb-2">Technical Skills</h3>
               <ul className="text-gray-600 space-y-1">
-                <li>Python, R, SQL, Java</li>
-                <li>Machine Learning (Sklearn, Keras, PyTorch)</li>
-                <li>Geospatial Analysis (ArcGIS, GeoPandas, ArcPy)</li>
-                <li>Data Visualization (Matplotlib, Folium, Bokeh)</li>
-                <li>Web Development (Django, Flask, Next.js)</li>
+                <li>Python, SQL, TypeScript</li>
+                <li>AI/LLMs (Claude, OpenAI APIs)</li>
+                <li>Machine Learning (Sklearn, PyTorch, Keras)</li>
+                <li>Geospatial (GeoPandas, Mapbox, ArcGIS)</li>
+                <li>Data Visualization (Plotly Dash, Folium, Matplotlib)</li>
+                <li>Web Development (Next.js, FastAPI, Django)</li>
               </ul>
             </div>
             <div>
               <h3 className="font-medium text-gray-900 mb-2">Domain Knowledge</h3>
               <ul className="text-gray-600 space-y-1">
-                <li>Natural Language Processing</li>
-                <li>Deep Learning & Neural Networks</li>
+                <li>Infrastructure Analytics</li>
+                <li>Transportation & Freight Systems</li>
+                <li>AI Automation & Workflows</li>
+                <li>Geospatial Storytelling</li>
+                <li>Large-scale GPS Data (NPMRDS, INRIX)</li>
                 <li>Agent-Based Modeling & Simulation</li>
-                <li>Transportation Systems</li>
-                <li>Disaster Analytics</li>
+                <li>Disaster Analytics & Crisis Informatics</li>
               </ul>
             </div>
           </div>
