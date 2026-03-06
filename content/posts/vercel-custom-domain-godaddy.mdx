@@ -1,0 +1,110 @@
+---
+title: "The Pain of Connecting a GoDaddy Domain to Vercel (And How to Fix It)"
+description: "A step-by-step guide to configuring your GoDaddy custom domain with Vercel, including how to deal with locked DNS records, conflicting A records, and mysterious 'Invalid Configuration' errors."
+date: "2026-03-06"
+tags: ["Vercel", "GoDaddy", "DNS", "Web Development", "Deployment"]
+---
+
+If you've ever tried connecting a GoDaddy domain to Vercel, you've probably encountered the dreaded **"Invalid Configuration"** warning. I recently went through this myself with `kamolroy.com`, and it was more painful than it needed to be. Here's what happened and how I fixed it.
+
+## The Setup
+
+I deployed my Next.js personal site to Vercel and added my custom domain `kamolroy.com` in the Vercel dashboard. Simple enough, right? Vercel told me to add two DNS records:
+
+| Type | Name | Value |
+|------|------|-------|
+| A | @ | `76.76.21.21` |
+| CNAME | www | `cname.vercel-dns.com` |
+
+I added both in GoDaddy's DNS management panel. But the domain stayed stuck on **"Invalid Configuration"** in Vercel.
+
+## The Problem: Ghost A Records
+
+When I looked closer at my GoDaddy DNS records, I noticed something odd. There were **two extra A records** I didn't create:
+
+| Type | Name | Value | Status |
+|------|------|-------|--------|
+| A | @ | `15.197.225.128` | Can't delete |
+| A | @ | `3.33.251.168` | Can't delete |
+| A | @ | `76.76.21.21` | Editable |
+
+Two A records pointing somewhere other than Vercel, and GoDaddy wouldn't let me delete or edit them. These conflicting records meant traffic to my domain was being split between Vercel and wherever GoDaddy was pointing.
+
+## Why You Can't Delete Them
+
+Those locked A records aren't regular DNS entries. They're created automatically by a **GoDaddy product** connected to your domain — typically one of these:
+
+- **Domain forwarding** (e.g., redirecting to `www.kamolroy.com`)
+- **GoDaddy Website Builder**
+- **GoDaddy parking page**
+- **Any "connected" GoDaddy service**
+
+GoDaddy manages these records on behalf of the product, so you can't touch them directly in the DNS panel. The fix isn't in DNS — it's in your GoDaddy product settings.
+
+## The Fix
+
+Here's what worked for me:
+
+### 1. Find the Connected Product
+
+In GoDaddy, go to your **domain settings** for the domain in question. Look for a section called **"Forwarding"** or **"Connected Products"**. In my case, there was a forwarding rule set up to redirect to `http://www.kamolroy.com`.
+
+### 2. Delete the Connection
+
+GoDaddy will show a confirmation dialog:
+
+> "Are you sure you want to delete connection to http://www.kamolroy.com?"
+
+**Delete it.** This is safe — you're removing GoDaddy's forwarding, not your domain itself.
+
+### 3. Watch the Records Disappear
+
+As soon as I deleted the connection, the two locked A records (`15.197.225.128` and `3.33.251.168`) vanished automatically from the DNS panel. Only my Vercel A record remained.
+
+### 4. Verify in Vercel
+
+Within minutes, Vercel's dashboard updated from "Invalid Configuration" to **"Valid Configuration"**. No manual refresh needed.
+
+## Updating to Vercel's Latest DNS Records
+
+After fixing the configuration, Vercel recommended updating to their newer DNS values:
+
+| Type | Name | New Value |
+|------|------|-----------|
+| A | @ | `216.150.1.1` |
+| CNAME | www | `<your-project-id>.vercel-dns-017.com` |
+
+The old values (`76.76.21.21` and `cname.vercel-dns.com`) still work, but Vercel is expanding their IP range and recommends the new ones. You can update these at your own pace.
+
+## What About All the Other DNS Records?
+
+If you're new to DNS, the GoDaddy panel can look intimidating with all its records. Here's what each one does:
+
+| Record | Purpose | Can You Delete It? |
+|--------|---------|-------------------|
+| **NS records** (`ns29/ns30.domaincontrol.com`) | GoDaddy's nameservers — they run your DNS | No, and don't try |
+| **SOA record** | Standard DNS metadata | No, leave it alone |
+| **CNAME `_domainconnect`** | GoDaddy's service connection tool | Harmless, leave it |
+| **CNAME `pay`** (`paylinks.commerce.godaddy.com`) | GoDaddy Payments integration | Delete if not using it |
+| **A `@`** (Vercel IP) | Points your domain to Vercel | Keep this |
+| **CNAME `www`** (Vercel) | Points www subdomain to Vercel | Keep this |
+
+The only records you need to care about are the **A record** and **www CNAME** pointing to Vercel. Everything else is standard GoDaddy infrastructure.
+
+## Lessons Learned
+
+1. **"Can't delete" DNS records mean a GoDaddy product is managing them.** Don't waste time in the DNS panel — find and remove the connected product instead.
+2. **Domain forwarding creates hidden A records.** Even a simple redirect to `www` can conflict with your hosting provider.
+3. **Vercel updates quickly.** Once your DNS is correct, Vercel detects the change within minutes.
+4. **You don't need to panic about default DNS records.** NS, SOA, and `_domainconnect` records are normal and harmless.
+
+## TL;DR
+
+If Vercel shows "Invalid Configuration" and GoDaddy has A records you can't delete:
+
+1. Go to GoDaddy domain settings
+2. Find and delete any **forwarding rules** or **connected products**
+3. The locked records will auto-remove
+4. Vercel will validate within minutes
+
+It's a 2-minute fix once you know where to look — but finding that answer took me way longer than it should have.
